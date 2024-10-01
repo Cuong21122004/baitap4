@@ -1,0 +1,96 @@
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      backgroundColor: 'green', // màu nền mặc định là xanh lá
+    };
+  }
+
+  // Hàm để thay đổi màu nền khi nhấn button
+  handleButtonClick = (newColor) => {
+    this.setState({ backgroundColor: newColor });
+  };
+
+  render() {
+    return (
+      <View style={[styles.container, { backgroundColor: this.state.backgroundColor }]}>
+        <ButtonComponent
+          backgroundColor="green"
+          onClick={this.handleButtonClick}
+          colorChange="green"
+          label="GREEN"
+        />
+        <ButtonComponent
+          backgroundColor="blue"
+          onClick={this.handleButtonClick}
+          colorChange="blue"
+          label="BLUE"
+        />
+        <ButtonComponent
+          backgroundColor="brown"
+          onClick={this.handleButtonClick}
+          colorChange="brown"
+          label="BROWN"
+        />
+        <ButtonComponent
+          backgroundColor="yellow"
+          onClick={this.handleButtonClick}
+          colorChange="yellow"
+          label="YELLOW"
+        />
+        <ButtonComponent
+          backgroundColor="red"
+          onClick={this.handleButtonClick}
+          colorChange="red"
+          label="RED"
+        />
+        <ButtonComponent
+          backgroundColor="black"
+          onClick={this.handleButtonClick}
+          colorChange="black"
+          label="BLACK"
+        />
+      </View>
+    );
+  }
+}
+
+// Component cho button
+class ButtonComponent extends Component {
+  render() {
+    const { backgroundColor, onClick, colorChange, label } = this.props;
+    return (
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: backgroundColor }]}
+        onPress={() => onClick(colorChange)}
+      >
+        <Text style={styles.buttonText}>{label}</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
+// Định nghĩa style cho các thành phần
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    width: 200,
+    paddingVertical: 15,
+    borderRadius: 5,
+    marginVertical: 5,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 18,
+  },
+});
+
+export default App;
